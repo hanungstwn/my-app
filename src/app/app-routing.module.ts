@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat-details/chat-details.module').then( m => m.ChatDetailsPageModule)
+  },
 ];
 
 @NgModule({

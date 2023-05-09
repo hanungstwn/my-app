@@ -1,20 +1,219 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
+<!-- Header -->
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title slot="start">
+      <ion-label>Whatsapp</ion-label>
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
+
+  <!-- Segment -->
+
+  <ion-segment
+    value="Chats"
+    color="succcess"
+    [(ngModel)]="segment"
+    mode="md"
+    #segmentcontrol
+  >
+    <ion-segment-button value="People">
+      <ion-icon name="People"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="Chats">
+      <ion-label>Chats</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Status">
+      <ion-label>Status</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Calls">
+      <ion-label>Panggilan</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!-- Fab Content -->
+<div>
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    [hidden]="segment != 'Chats'"
+  >
+    <ion-fab-button>
+      <ion-icon name="chatbox-ellipses"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    [hidden]="segment != 'Status'"
+  >
+    <ion-fab-button>
+      <ion-icon name="pencil"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button>
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    [hidden]="segment != 'Calls'"
+  >
+    <ion-fab-button>
+      <ion-icon name="call"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<!-- Content -->
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Chat Segments -->
+  <div [hidden]="segment != 'Chats'" *ngIf="contentLoaded">
+    <ion-list>
+      <ion-item button *ngFor="let item of items; let i = index" (click)="navigateFromCode(item.name)" expand="full">
+        <ion-avatar slot="start">
+          <img [src]="'https://picsum.photos/80/80?random=' + i" alt="avatar" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item.name }}</h2>
+          <p>
+            <ion-icon
+              slot="start"
+              name="checkmark-done"
+              class="read"
+            ></ion-icon>
+            {{generateRandomWords()}}
+          </p>
+        </ion-label>
+        <ion-label slot="end" class="ion-text-right">
+          <p>{{ generateRandomTime() }}</p>
+          <p>&nbsp;</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
+
+  <div [hidden]="segment != 'Chats'" *ngIf="!contentLoaded">
+    <ion-list>
+      <ion-item button *ngFor="let item of items; let i = index">
+        <ion-avatar slot="start" skeleton>
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <ion-skeleton-text animated style="width: 10%"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </ion-label>
+        <ion-label slot="end" class="ion-text-right">
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          <p>&nbsp;</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- Community Segments -->
+  <div [hidden]="segment != 'People'">
+    <img src="../../assets/community.svg" alt="community" class="avatar" />
+    <div class="text">
+      <h3>Memperkenalkan Komunitas</h3>
+      <p>
+        Kelola grup terkait Anda dengan mudah dan kirim pengumuman. Sekarang,
+        komunitas anda seperti lingkungan atau sekolah, dapat memiliki ruang
+        sendiri
+      </p>
+      <ion-button shape="round" expand="block" color="success">
+        Mulai Komunitas Anda
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Status Segments -->
+  <div [hidden]="segment != 'Status'">
+    <ion-item button>
+      <ion-avatar slot="start">
+        <img
+          src="https://images.unsplash.com/photo-1541534401786-2077eed87a74?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODF8fHByb2ZpbGUlMjBwaWN0dXJlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+        />
+      </ion-avatar>
+      <ion-label>
+        <h2>Status Saya</h2>
+        <p>Ketuk untuk menambahkan pembaruan status</p>
+      </ion-label>
+    </ion-item>
+    <div class="separator">
+      <p>Pembaruan terkini</p>
+    </div>
+    <ion-item button *ngFor="let item of items; let i = index">
+      <ion-avatar slot="start" class="border">
+        <img [src]="'https://picsum.photos/80/80?random=' + i" alt="avatar" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ item.name }}</h2>
+        <p>{{randomNumber()}} menit yang lalu</p>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <!-- Call Segments -->
+  <div [hidden]="segment != 'Calls'">
+    <ion-item button>
+      <ion-button slot="start" shape="round" color="success"
+        ><ion-icon name="link-outline"></ion-icon
+      ></ion-button>
+      <ion-label>
+        <h2>Buat Tautan Panggilan</h2>
+        <p>
+          Bagikan tautan untuk panggilan <br />
+          Whatsapp Anda
+        </p>
+      </ion-label>
+    </ion-item>
+    <ion-item button *ngFor="let item of items; let i = index">
+      <ion-avatar slot="start">
+        <img [src]="'https://picsum.photos/80/80?random=' + i" alt="avatar" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ item.name }}</h2>
+        <p>
+          <ion-icon
+            slot="start"
+            name="arrow-up-outline"
+            class="read"
+          ></ion-icon>
+          {{ generateRandomTime() }}
+        </p>
+      </ion-label>
+      <ion-label slot="end" class="ion-text-right">
+        <ion-icon slot="start" name="call"></ion-icon>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <ion-infinite-scroll
+    threshold="2%"
+    [disabled]="false"
+    position="bottom"
+    (ionInfinite)="onIonInfinite($event)"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data..."
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
