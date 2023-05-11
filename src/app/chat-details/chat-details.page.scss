@@ -1,0 +1,80 @@
+.avatar {
+  width: 1.3cm;
+  height: auto;
+  margin: auto;
+}
+
+.custom-toolbar {
+  padding-top: 10px;
+  height: 70px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 5px 20px;
+}
+
+.conversation {
+  background-image: url("https://i.pinimg.com/564x/8f/ba/cb/8fbacbd464e996966eb9d4a6b7a9c21e.jpg");
+  height: 100vh;
+  margin-top: 5px;
+  .chat-section {
+    height: auto;
+    overflow: scroll;
+
+    .chat {
+      display: flex;
+      flex-direction: column;
+    }
+    .messages {
+      display: flex;
+      flex-direction: column;
+      .message {
+        border-radius: 18px;
+        padding: 18px 20px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  .other{
+    align-items: flex-start;
+    span{
+        font-size: 0.7rem;
+        color: azure;
+        margin-left: 40px;
+    }
+    .message{
+        background: #eee;
+        position: relative;
+    }
+  }
+}
+
+.message-input{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 20px;
+    width: 90vw;
+    left: 50%;
+    margin-left: -45vw;
+    ion-input{
+        border: 1px solid #ddd;
+        background: #ddd;
+        border-radius: 20px;
+        height: 48px;
+        --padding-start: 20px;
+    }
+    .mic-button{
+        margin-left: 20px;
+        background-color: #25d366;
+        padding: 12px 15px 9px 15px;
+        border-radius: 50px;
+        color: #fff;
+        font-size: 1.5rem;
+    }
+}
