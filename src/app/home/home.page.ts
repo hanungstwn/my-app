@@ -20,13 +20,21 @@ export class HomePage implements OnInit {
 
   constructor(private router: Router) {}
 
+  // navigateFromCode(itemName: string) {
+  //   const item = this.items.find(i => i.name === itemName);
+  //   if (item) {
+  //     // const itemId = this.items.indexOf(item);
+  //     this.router.navigateByUrl(`/chat?id=${itemName}-${this.generateRandomTime()}`);
+  //   }
+  // }
+  
   navigateFromCode(itemName: string) {
     const item = this.items.find(i => i.name === itemName);
     if (item) {
-      const itemId = this.items.indexOf(item);
-      this.router.navigateByUrl(`/chat?id=${itemName}`);
+      this.router.navigateByUrl(`/chat?itemName=${itemName}`);
     }
-  }  
+  }
+  
 
   ngOnInit() {
     this.generateItems();

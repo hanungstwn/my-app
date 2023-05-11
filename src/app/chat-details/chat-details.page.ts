@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faker } from '@faker-js/faker';
 
 @Component({
   selector: 'app-chat-details',
@@ -10,18 +9,15 @@ import { faker } from '@faker-js/faker';
 export class ChatDetailsPage implements OnInit {
   chat: any[] = [];
   items: any[] = [];
+  times: any[] = [];
 
-  constructor(private router: ActivatedRoute, private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    const category = this.route.snapshot.paramMap.get('id');
-    console.log(`category: ${category}`);
-    this.generateItems();
-  }
-
-  private generateItems() {
-    this.items.push({
-      name: faker.name.firstName(),
-    });
+    const itemName = this.route.snapshot.queryParamMap.get('itemName');
+    const item = this.items.find(i => i.name === itemName);
+    if (item) {
+      this.items = [item];
+    }
   }
 }
