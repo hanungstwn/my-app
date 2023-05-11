@@ -38,43 +38,54 @@
         font-size: 0.9rem;
       }
     }
-  }
-  .other{
-    align-items: flex-start;
-    span{
-        font-size: 0.7rem;
-        color: azure;
-        margin-left: 40px;
+    .other-message {
+      align-items: flex-start;
+      background: #eee;
+      position: relative;
+      border-radius: 15px;
+      width: 40%;
+      padding: 0 0 10px 10px;
     }
-    .message{
-        background: #eee;
-        position: relative;
+    span{
+      font-size: 12px;
+    }
+    .my-message {
+      align-items: flex-end;
+      background: #eee;
+      position: relative;
+      border-radius: 15px;
+      width: 50%;
+      padding: 0 0 10px 10px;
+    }
+    .done{
+      margin-top: 5px;
+      margin-left: 5px;
     }
   }
 }
 
-.message-input{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    bottom: 20px;
-    width: 90vw;
-    left: 50%;
-    margin-left: -45vw;
-    ion-input{
-        border: 1px solid #ddd;
-        background: #ddd;
-        border-radius: 20px;
-        height: 48px;
-        --padding-start: 20px;
-    }
-    .mic-button{
-        margin-left: 20px;
-        background-color: #25d366;
-        padding: 12px 15px 9px 15px;
-        border-radius: 50px;
-        color: #fff;
-        font-size: 1.5rem;
-    }
+.message-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 20px;
+  width: 90vw;
+  left: 50%;
+  margin-left: -45vw;
+  ion-input {
+    border: 1px solid #ddd;
+    background: #ddd;
+    border-radius: 20px;
+    height: 48px;
+    --padding-start: 20px;
+  }
+  .mic-button {
+    margin-left: 20px;
+    background-color: #25d366;
+    padding: 12px 15px 9px 15px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 1.5rem;
+  }
 }
