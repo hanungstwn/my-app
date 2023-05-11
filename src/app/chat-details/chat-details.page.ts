@@ -16,8 +16,8 @@ export class ChatDetailsPage implements OnInit {
   ngOnInit() {
     const itemName = this.route.snapshot.queryParamMap.get('itemName');
     const item = this.items.find(i => i.name === itemName);
-    if (item) {
-      this.items = [item];
+    if (item !==null) {
+      this.items = [itemName];
     }
   }
 }
