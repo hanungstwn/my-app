@@ -86,7 +86,7 @@
   <!-- Chat Segments -->
   <div [hidden]="segment != 'Chats'" *ngIf="contentLoaded">
     <ion-list>
-      <ion-item button *ngFor="let item of items; let i = index" (click)="navigateFromCode(item.name)" expand="full">
+      <ion-item button *ngFor="let item of items; let i = index" (click)="navigateChat(item.name)" expand="full">
         <ion-avatar slot="start">
           <img [src]="'https://picsum.photos/80/80?random=' + i" alt="avatar" />
         </ion-avatar>
@@ -184,7 +184,7 @@
         </p>
       </ion-label>
     </ion-item>
-    <ion-item button *ngFor="let item of items; let i = index">
+    <ion-item button *ngFor="let item of items; let i = index" (click)="navigateCall(item.name)">
       <ion-avatar slot="start">
         <img [src]="'https://picsum.photos/80/80?random=' + i" alt="avatar" />
       </ion-avatar>

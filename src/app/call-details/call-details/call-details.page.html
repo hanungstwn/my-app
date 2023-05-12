@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Info Panggilan</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="chatbox-ellipses"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of items; let i = index" expand="full">
+      <ion-avatar slot="start">
+        <img [src]="'https://picsum.photos/80/80?random=' + i" alt="avatar" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{this.item}}</h2>
+        <p>Saya menggunakan whatsapp!</p>
+      </ion-label>
+      <div slot="end" class="call-icon">
+        <ion-icon name="call" style="margin-right: 15px;"></ion-icon>
+        <ion-icon name="videocam"></ion-icon>
+        <p>&nbsp;</p>
+      </div>
+    </ion-item>
+    <p class="call-time">Kemarin</p>
+    <div>
+      <ion-list lines="none">
+        <ion-item button expand="full">
+          <ion-icon name="arrow-up" class="call-colors"></ion-icon>
+          <ion-label class="call-status">
+            <h2>Keluar</h2>
+            <p>
+              <ion-icon name="call" class="desc"></ion-icon>Saya menggunakan
+              whatsapp!
+            </p>
+          </ion-label>
+          <div slot="end" class="call-desc">
+            <p style="text-align: right">24.40</p>
+            <p>105,8 MB</p>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-list>
+</ion-content>

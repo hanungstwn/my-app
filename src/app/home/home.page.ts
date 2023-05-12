@@ -28,13 +28,19 @@ export class HomePage implements OnInit {
   //   }
   // }
   
-  navigateFromCode(itemName: string) {
+  navigateChat(itemName: string) {
     const item = this.items.find(i => i.name === itemName);
     if (item) {
       this.router.navigateByUrl(`/chat?itemName=${itemName}`);
     }
   }
-  
+
+  navigateCall(itemName: string) {
+    const item = this.items.find(i => i.name === itemName);
+    if (item) {
+      this.router.navigateByUrl(`/call?itemName=${itemName}`);
+    }
+  }
 
   ngOnInit() {
     this.generateItems();
